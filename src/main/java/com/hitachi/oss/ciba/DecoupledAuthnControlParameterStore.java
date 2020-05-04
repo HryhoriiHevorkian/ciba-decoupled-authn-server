@@ -8,7 +8,7 @@ public class DecoupledAuthnControlParameterStore {
         return SINGLETON;
     }
 
-    private int waitingInSec = 60;
+    private int waitingInSec = 10;
     private String authResult = DecoupledAuthnStatus.SUCCEEDED;
 
     public int getWaitingInSec() {

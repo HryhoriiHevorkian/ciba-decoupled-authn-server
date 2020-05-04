@@ -54,7 +54,7 @@ public class CallbackAsyncThread extends Thread {
             String authorization = BasicAuthHelper.createHeader(clientId, clientSecret);
             post.setHeader("Authorization", authorization);
             List<NameValuePair> parameters = new LinkedList<>();
-            parameters.add(new BasicNameValuePair("decoupled_auhtn_binding_id", decoupledAuthnBindingId));
+            parameters.add(new BasicNameValuePair("decoupled_auth_id", decoupledAuthnBindingId));
             parameters.add(new BasicNameValuePair("login_hint", loginHint));
             parameters.add(new BasicNameValuePair("auth_result", authResult));
             UrlEncodedFormEntity formEntity;

@@ -34,7 +34,7 @@ public class DecoupledAuthnRequestController {
         DecoupledAuthenticationRequest decoupledAuthnRequest = new DecoupledAuthenticationRequest();
         decoupledAuthnRequest.setBindingMessage(request.getFirst("binding_message"));
         decoupledAuthnRequest.setConsentRequired(Boolean.valueOf(request.getFirst("is_consent_required")));
-        decoupledAuthnRequest.setDecoupledAuhtnBidingId(request.getFirst("decoupled_auhtn_binding_id"));
+        decoupledAuthnRequest.setDecoupledAuhtnBidingId(request.getFirst("decoupled_auth_id"));
         decoupledAuthnRequest.setLoginHint(request.getFirst("login_hint"));
         decoupledAuthnRequest.setScope(request.getFirst("scope"));
         dumpDecoupledAuthenticationRequest(decoupledAuthnRequest);
