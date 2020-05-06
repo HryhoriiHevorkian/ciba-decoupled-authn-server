@@ -34,15 +34,15 @@ public class DecoupledAuthnRequestController {
         DecoupledAuthenticationRequest decoupledAuthnRequest = new DecoupledAuthenticationRequest();
         decoupledAuthnRequest.setBindingMessage(request.getFirst("binding_message"));
         decoupledAuthnRequest.setConsentRequired(Boolean.valueOf(request.getFirst("is_consent_required")));
-        decoupledAuthnRequest.setDecoupledAuhtnBidingId(request.getFirst("decoupled_auth_id"));
-        decoupledAuthnRequest.setLoginHint(request.getFirst("login_hint"));
+        decoupledAuthnRequest.setDecoupledAuthId(request.getFirst("decoupled_auth_id"));
+        decoupledAuthnRequest.setUserInfo(request.getFirst("user_info"));
         decoupledAuthnRequest.setScope(request.getFirst("scope"));
         dumpDecoupledAuthenticationRequest(decoupledAuthnRequest);
 
         log.warn("request started");
         CallbackAsyncThread callbackProcess = new CallbackAsyncThread(
-                decoupledAuthnRequest.getLoginHint(),
-                decoupledAuthnRequest.getDecoupledAuhtnBidingId(),
+                decoupledAuthnRequest.getUserInfo(),
+                decoupledAuthnRequest.getDecoupledAuthId(),
                 DecoupledAuthnControlParameterStore.getInstance().getAuthnResult(),
                 DecoupledAuthnControlParameterStore.getInstance().getWaitingInSec(),
                 cibaContext.getCallbackUri(),
@@ -57,8 +57,8 @@ public class DecoupledAuthnRequestController {
     private void dumpDecoupledAuthenticationRequest(DecoupledAuthenticationRequest request) {
         log.info(" binding_message = " + request.getBindingMessage());
         log.info(" is_consent_required = " + request.isConsentRequired());
-        log.info(" decoupled_auhtn_binding_id = " + request.getDecoupledAuhtnBidingId());
-        log.info(" login_hint = " + request.getLoginHint());
+        log.info(" decoupled_auhtn_binding_id = " + request.getDecoupledAuthId());
+        log.info(" user_info = " + request.getUserInfo());
         log.info(" scope = " + request.getScope());
     }
 

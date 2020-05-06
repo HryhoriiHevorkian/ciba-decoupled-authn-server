@@ -2,26 +2,26 @@ package com.hitachi.oss.ciba.bean;
 
 public class DecoupledAuthenticationRequest {
 
-    private String decoupledAuhtnBidingId;
-    private String loginHint;
+    private String decoupledAuthId;
+    private String userInfo;
     private boolean isConsentRequred;
     private String scope;
     private String bindingMessage;
 
-    public String getDecoupledAuhtnBidingId() {
-        return decoupledAuhtnBidingId;
+    public String getDecoupledAuthId() {
+        return decoupledAuthId;
     }
 
-    public void setDecoupledAuhtnBidingId(String decoupledAuhtnBidingId) {
-        this.decoupledAuhtnBidingId = decoupledAuhtnBidingId;
+    public void setDecoupledAuthId(String decoupledAuthId) {
+        this.decoupledAuthId = decoupledAuthId;
     }
 
-    public String getLoginHint() {
-        return loginHint;
+    public String getUserInfo() {
+        return userInfo;
     }
 
-    public void setLoginHint(String username) {
-        this.loginHint = username;
+    public void setUserInfo(String userInfo) {
+        this.userInfo = userInfo;
     }
 
     public boolean isConsentRequired() {

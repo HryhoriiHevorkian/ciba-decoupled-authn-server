@@ -21,8 +21,8 @@ public class CallbackAsyncThread extends Thread {
 
     private static final Log log = LogFactory.getLog(CallbackAsyncThread.class);
 
-    final private String loginHint;
-    final private String decoupledAuthnBindingId;
+    final private String userInfo;
+    final private String decoupledAuthId;
     final String authResult;
     final int waitInSec;
     final String callbackEndpoint;
@@ -32,8 +32,8 @@ public class CallbackAsyncThread extends Thread {
     public CallbackAsyncThread(
             String loginHint, String decoupledAuthnBindingId, String authResult,
             int waitInSec, String callbackEndpoint, String clientId, String clientSecret) {
-        this.loginHint = loginHint;
-        this.decoupledAuthnBindingId = decoupledAuthnBindingId;
+        this.userInfo = loginHint;
+        this.decoupledAuthId = decoupledAuthnBindingId;
         this.authResult = authResult;
         this.waitInSec = waitInSec;
         this.callbackEndpoint = callbackEndpoint;
@@ -42,7 +42,7 @@ public class CallbackAsyncThread extends Thread {
     }
 
     public void run() {
-        log.info("Async function started. auth_result: " + authResult + " login_hint: " + loginHint + " decoupled_auhtn_binding_id " + decoupledAuthnBindingId + " waitInSec: " + waitInSec);
+        log.info("Async function started. auth_result: " + authResult + " user_info: " + userInfo + " decoupled_auth_id " + decoupledAuthId + " waitInSec: " + waitInSec);
         try {
             Thread.sleep(waitInSec * 1000L);
         } catch (InterruptedException e1) {
@@ -54,8 +54,8 @@ public class CallbackAsyncThread extends Thread {
             String authorization = BasicAuthHelper.createHeader(clientId, clientSecret);
             post.setHeader("Authorization", authorization);
             List<NameValuePair> parameters = new LinkedList<>();
-            parameters.add(new BasicNameValuePair("decoupled_auth_id", decoupledAuthnBindingId));
-            parameters.add(new BasicNameValuePair("login_hint", loginHint));
+            parameters.add(new BasicNameValuePair("decoupled_auth_id", decoupledAuthId));
+            parameters.add(new BasicNameValuePair("user_info", userInfo));
             parameters.add(new BasicNameValuePair("auth_result", authResult));
             UrlEncodedFormEntity formEntity;
             try {
